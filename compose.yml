@@ -1,2 +1,6 @@
 include:
   - signoz-deploy/docker/docker-compose.yaml
+  - ./rabbitmq/compose.yml
+
+networks:
+  signoz-private: {}

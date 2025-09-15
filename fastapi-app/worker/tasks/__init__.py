@@ -1,0 +1,1 @@
+from worker.tasks.compute import *

@@ -1,0 +1,11 @@
+[project]
+name = "httpx-test"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "httpx>=0.28.1",
+    "opentelemetry-instrumentation-httpx>=0.58b0",
+    "opentelemetry-sdk>=1.37.0",
+]
