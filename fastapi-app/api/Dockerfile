@@ -5,11 +5,13 @@ WORKDIR /app
 
 RUN pip install uv
 
-COPY ./api/pyproject.toml ./api/uv.lock
+COPY ./api/pyproject.toml ./api/uv.lock ./
 RUN uv sync --no-dev
 
 ### Final stage
 FROM python:3.12-slim AS final
+
+WORKDIR /app
 
 # Use /app/.venv as python environment
 ENV PATH="/app/.venv/bin:$PATH"
