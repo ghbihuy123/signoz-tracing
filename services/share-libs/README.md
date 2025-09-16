@@ -1,0 +1,1 @@
+Here contains shared development library, use for general purpose
