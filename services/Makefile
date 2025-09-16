@@ -7,7 +7,7 @@ run-worker:
 	python -m celery -A worker.celery_app.celery_app worker --loglevel=info -Q default
 
 build-api:
-	docker build -f ./api/Dockerfile -t computer-api:latest .
+	docker build -f ./computer-svc/api/Dockerfile -t computer-api:latest .
 
 build-worker:
-	docker build -f ./worker/Dockerfile -t computer-worker:latest .
+	docker build -f ./computer-svc/worker/Dockerfile -t computer-worker:latest .

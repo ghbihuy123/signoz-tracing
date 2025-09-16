@@ -5,7 +5,7 @@ WORKDIR /app
 
 RUN pip install uv
 
-COPY ./api/pyproject.toml ./api/uv.lock ./
+COPY ./computer-svc/api/pyproject.toml ./computer-svc/api/uv.lock ./
 RUN uv sync --no-dev
 
 ### Final stage
@@ -18,7 +18,7 @@ ENV PATH="/app/.venv/bin:$PATH"
 
 # Copy neccessary files
 COPY --from=builder /app/.venv /app/.venv
-COPY ./api /app/api
-COPY ./worker /app/worker
+COPY ./computer-svc/api /app/api
+COPY ./computer-svc/worker /app/worker
 
 ENTRYPOINT ["python", "-m", "uvicorn", "api.app:app", "--host", "0.0.0.0", "--port", "8000"]

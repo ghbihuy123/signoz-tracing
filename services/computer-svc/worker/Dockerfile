@@ -7,7 +7,7 @@ WORKDIR /app
 RUN pip install uv
 
 # Copy dependency files
-COPY pyproject.toml uv.lock ./
+COPY ./computer-svc/worker/pyproject.toml ./computer-svc/worker/uv.lock ./
 
 # Install dependencies into a venv
 RUN uv sync --no-dev
@@ -25,7 +25,7 @@ ENV VIRTUAL_ENV=/app/.venv
 ENV PATH="/app/.venv/bin:$PATH"
 
 # Copy worker source code
-COPY . .
+COPY ./computer-svc/worker ./worker
 
 # Run Celery worker
-ENTRYPOINT ["celery", "-A", "celery_app.celery_app", "worker", "--loglevel=info", "-Q", "default"]
+ENTRYPOINT ["celery", "-A", "worker.celery_app.celery_app", "worker", "--loglevel=info", "-Q", "default"]
