@@ -1,0 +1,16 @@
+services:
+  computer-api:
+    build:
+      context: .
+      dockerfile: ./computer-svc/api/Dockerfile
+    ports:
+      - "8001:8000"
+    networks:
+      - signoz-private
+
+  computer-worker:
+    build:
+      context: .
+      dockerfile: ./computer-svc/worker/Dockerfile
+    networks:
+      - signoz-private

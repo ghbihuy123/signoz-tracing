@@ -21,4 +21,6 @@ COPY --from=builder /app/.venv /app/.venv
 COPY ./computer-svc/api /app/api
 COPY ./computer-svc/worker /app/worker
 
+EXPOSE 8000
+
 ENTRYPOINT ["python", "-m", "uvicorn", "api.app:app", "--host", "0.0.0.0", "--port", "8000"]
