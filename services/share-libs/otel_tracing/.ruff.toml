@@ -1,55 +1,76 @@
-line-length = 120
-cache-dir = ".ruff_cache"
-target-version = "py310"
-unsafe-fixes = true
-show-fixes = true
+exclude        = ["docs/*", "*/migrations/*", ".git/*"]
+line-length    = 100
+indent-width   = 4
+target-version = "py311"
 
 [lint]
-select = [
-    "E",
-    "F",
-    "I",
-    "TC",
-    # W
-    "W505",
-    # PT
-    "PT018",
-    # SIM
-    "SIM101",
-    "SIM114",
-    # PGH
-    "PGH004",
-    # PL
-    "PLE1142",
-    # RUF
-    "RUF100",
-    # UP
-    "UP007"
-]
-preview = true
-ignore = ["FURB101"]
+    select = [
+        "E",   # pycodestyle errors
+        "W",   # pycodestyle warnings
+        "N",   # pep8-naming
+        "F",   # flake8 errors
+        "S",   # Bandig
+        "SIM", # Simplify
+        "I",   # isort
+        "B",   # bugbear
+        "C",   # comprehensions
+        "PL",  # pylint error
+        "FBT", # Avoid boolean traps
+        "UP",  # pyupgrade
+        "T10", # Avoid debuggers
+        "T20", # Avoid print statements
+        "DJ",  # Django
+        "ICN", # Import conventions
+        "PT",  # Pytest style
+        "ERA", # Error return annotations
+        "TD",  # Correct use of TODO comments
+        "PIE", # Unnecesary code
+        "PTH", # Best use of pathlib
+        "RET", # Best use of return,
+        "F401",
+        "TC001",
+        "TC002",
+        "TC003",
+        "TC004",
+        "F401", # Unused import
+        "F406", # Module reimport
+        "I001", # Order of import 
+    ]
 
-[lint.flake8-pytest-style]
-mark-parentheses = false
-parametrize-names-type = "list"
-parametrize-values-row-type = "list"
-parametrize-values-type = "tuple"
+    ignore = [
+        "PLR2004", # Ignore use of magic values
+        "PLR0915", # Too many statements
+        "TD002",   # missing-todo-author
+        "TD003",   # missing-todo-link
+    ]
 
-[lint.flake8-unused-arguments]
-ignore-variadic-names = true
+    fixable   = ["ALL"]
+    unfixable = []
 
-[lint.isort]
-lines-between-types = 1
-order-by-type = true
+    [lint.per-file-ignores]
+        "src/*/settings/*.py"               = ["F403", "F405"]
+        "src/**/migrations/0001_initial.py" = ["E501"]
+        "**/test_*.py"                      = ["S101"]
 
-[lint.per-file-ignores]
-"**/api/v1/*.py" = ["TC"]
-"**/model/*.py" = ["TC003"]
-"**/model/__init__.py" = ["F401"]
-"**/tests/*.py" = ["E402"]
+    [lint.isort]
+        lines-after-imports = 2
+        case-sensitive = true
+        order-by-type = true
+        force-sort-within-sections = true
+        combine-as-imports = true
+        force-to-top = ["pytest"]
+        relative-imports-order = "closest-to-furthest"
+        section-order = [
+            "future",
+            "standard-library",
+            "main-library",
+            "third-party",
+            "first-party",
+            "local-folder",
+        ]
+
+        [lint.isort.sections]
+            "main-library" = ["django", "pydantic"]
 
 [format]
-preview = true
-quote-style = "single"
-docstring-code-format = true
-skip-magic-trailing-comma = false
+    quote-style = "double"
