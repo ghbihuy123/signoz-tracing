@@ -32,4 +32,4 @@ ENV PATH="/app/.venv/bin:$PATH"
 COPY ./computer-svc/worker ./worker
 
 # Run Celery worker
-ENTRYPOINT ["celery", "-A", "worker.celery_app.celery_app", "worker", "--loglevel=info", "-Q", "default"]
+ENTRYPOINT ["python", "-m", "celery", "-A", "worker.celery_app.celery_app", "worker", "--loglevel=info", "-Q", "default"]

@@ -3,6 +3,8 @@ services:
     build:
       context: .
       dockerfile: ./computer-svc/api/Dockerfile
+    env_file:
+      - ../.env.${ENVIRONMENT}
     ports:
       - "8001:8000"
     networks:
@@ -14,3 +16,5 @@ services:
       dockerfile: ./computer-svc/worker/Dockerfile
     networks:
       - signoz-private
+    env_file:
+      - ../.env.${ENVIRONMENT}
