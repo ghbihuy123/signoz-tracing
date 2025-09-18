@@ -1,5 +1,5 @@
 [project]
-name = "otel_tracing"
+name = "astrotel"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -13,9 +13,14 @@ dependencies = [
     "opentelemetry-instrumentation-httpx>=0.58b0",
     "opentelemetry-instrumentation-requests>=0.58b0",
     "opentelemetry-sdk>=1.37.0",
+    "pydantic-settings>=2.10.1",
 ]
 
 [dependency-groups]
 dev = [
     "fastapi>=0.116.1",
 ]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

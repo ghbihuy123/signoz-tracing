@@ -8,7 +8,7 @@ RUN pip install uv
 RUN mkdir /app/computer-svc && mkdir /app/computer-svc/api
 
 COPY ./computer-svc/api/pyproject.toml ./computer-svc/api/uv.lock /app/computer-svc/api
-COPY ./share-libs/otel_tracing /app/share-libs/otel_tracing
+COPY ./share-libs/astrotel /app/share-libs/astrotel
 RUN cd /app/computer-svc/api && \
     uv sync --no-dev
 

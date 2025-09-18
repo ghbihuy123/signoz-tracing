@@ -1,4 +1,4 @@
-from abc import abstractmethod
+from abc import abstractmethod, ABC
 import logging
 import os
 
@@ -16,7 +16,7 @@ from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 
-from otel_tracing.error import InvalidOtelModeError
+from astrotel.error import InvalidOtelModeError
 
 
 OTEL_SERVICE_NAME = os.environ.get('OTEL_SERVICE_NAME', 'unknown-service')
@@ -26,7 +26,7 @@ OTEL_GRPC_ENDPOINT = os.environ.get('OTEL_GRPC_ENDPOINT', 'http://localhost:4317
 OTEL_HTTP_ENDPOINT = os.environ.get('OTEL_HTTP_ENDPOINT', 'http://localhost:4318')
 
 
-class OpentelemetryTracingBase:
+class OtelTracingBase(ABC):
     service_name: str = OTEL_SERVICE_NAME
     environment: str = OTEL_DEPLOYMENT_ENVIRONMENT
     otel_mode: str = OTEL_MODE
@@ -40,12 +40,12 @@ class OpentelemetryTracingBase:
             'service.name': self.service_name,
             'deployment.environment': self.environment,
         })
-        # Init trace provider
+        # Init self.tracer_provider
         self.tracer_provider = TracerProvider(resource=resource)
         trace_exporter = self._get_trace_exporter()
         self.tracer_provider.add_span_processor(BatchSpanProcessor(trace_exporter))
 
-        # Init logs provider
+        # Init self.logger_provider
         self.logger_provider = LoggerProvider(resource=resource)
         log_exporter = self._get_logs_exporter()
         self.logger_provider.add_log_record_processor(BatchLogRecordProcessor(log_exporter))
