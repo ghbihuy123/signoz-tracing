@@ -5,8 +5,12 @@ WORKDIR /app
 
 RUN pip install uv
 
-COPY ./computer-svc/api/pyproject.toml ./computer-svc/api/uv.lock ./
-RUN uv sync --no-dev
+RUN mkdir /app/computer-svc && mkdir /app/computer-svc/api
+
+COPY ./computer-svc/api/pyproject.toml ./computer-svc/api/uv.lock /app/computer-svc/api
+COPY ./share-libs/astrotel /app/share-libs/astrotel
+RUN cd /app/computer-svc/api && \
+    uv sync --no-dev
 
 ### Final stage
 FROM python:3.12-slim AS final
@@ -17,7 +21,7 @@ WORKDIR /app
 ENV PATH="/app/.venv/bin:$PATH"
 
 # Copy neccessary files
-COPY --from=builder /app/.venv /app/.venv
+COPY --from=builder /app/computer-svc/api/.venv /app/.venv
 COPY ./computer-svc/api /app/api
 COPY ./computer-svc/worker /app/worker
 
