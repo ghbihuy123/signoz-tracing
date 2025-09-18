@@ -1,4 +1,5 @@
 from pydantic_settings import BaseSettings
+from typing import Literal
 
 class AstrotelSettings(BaseSettings):
     # OTEL config
@@ -7,7 +8,7 @@ class AstrotelSettings(BaseSettings):
     mode: str = "grpc"
     grpc_endpoint: str = "http://localhost:4317"
     http_endpoint: str = "http://localhost:4318"
-
+    logs_ship_level: Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"] = "INFO"
     class Config:
         env_file = ".env"
         env_prefix = "OTEL_"

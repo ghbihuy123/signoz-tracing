@@ -74,4 +74,5 @@ class OtelTracingBase(ABC):
         pass
 
     def configure_logging_handler(self) -> LoggingHandler:
-        return LoggingHandler(level=logging.INFO, logger_provider=self.logger_provider)
+        level = getattr(logging, self.logs_ship_level, logging.INFO)
+        return LoggingHandler(level=level, logger_provider=self.logger_provider)
