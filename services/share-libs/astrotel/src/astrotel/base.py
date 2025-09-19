@@ -1,4 +1,4 @@
-from abc import abstractmethod, ABC
+from abc import ABC, abstractmethod
 import logging
 
 from opentelemetry.exporter.otlp.proto.grpc._log_exporter import OTLPLogExporter as GrpcLogExporter
@@ -15,8 +15,8 @@ from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 
-from astrotel.error import InvalidOtelModeError
 from astrotel.config import AstrotelSettings
+from astrotel.error import InvalidOtelModeError
 
 
 class OtelTracingBase(ABC):
@@ -27,7 +27,7 @@ class OtelTracingBase(ABC):
     otel_http_endpoint: str = AstrotelSettings.http_endpoint
     tracer_provider: TracerProvider
     logger_provider: LoggerProvider
-
+    logs_ship_level: str = AstrotelSettings.logs_ship_level
     def __init__(self):
         # Init resource with name and deploy environment
         resource = Resource.create({
