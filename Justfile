@@ -7,5 +7,5 @@ down *ENVIRONMENT:
 build *FLAGS:
     docker compose build {{FLAGS}}
 
-ps:
-    docker compose ps
+ps *ENVIRONMENT:
+    docker compose --env-file .env.{{ENVIRONMENT}} ps

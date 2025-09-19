@@ -9,11 +9,16 @@ dependencies = [
     "opentelemetry-exporter-otlp-proto-grpc>=1.37.0",
     "opentelemetry-exporter-otlp-proto-http>=1.37.0",
     "opentelemetry-instrumentation>=0.58b0",
+    "opentelemetry-sdk>=1.37.0",
+    "pydantic-settings>=2.10.1",
+]
+
+[project.optional-dependencies]
+fastapi = [
+    "httpx>=0.28.1",
     "opentelemetry-instrumentation-fastapi>=0.58b0",
     "opentelemetry-instrumentation-httpx>=0.58b0",
     "opentelemetry-instrumentation-requests>=0.58b0",
-    "opentelemetry-sdk>=1.37.0",
-    "pydantic-settings>=2.10.1",
 ]
 
 [dependency-groups]
