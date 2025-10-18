@@ -55,7 +55,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "astrotel", extras = ["fastapi"], directory = "../../share-libs/astrotel" },
+    { name = "astrotel", extras = ["fastapi"] },
     { name = "asyncer", specifier = ">=0.0.8" },
     { name = "celery", specifier = ">=5.5.3" },
     { name = "fastapi", specifier = ">=0.116.1" },
@@ -74,7 +74,7 @@ wheels = [
 [[package]]
 name = "astrotel"
 version = "0.1.0"
-source = { directory = "../../share-libs/astrotel" }
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "opentelemetry-api" },
     { name = "opentelemetry-exporter-otlp-proto-grpc" },
@@ -82,6 +82,10 @@ dependencies = [
     { name = "opentelemetry-instrumentation" },
     { name = "opentelemetry-sdk" },
     { name = "pydantic-settings" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/54/f3/000e1771038fee9a0e36a2dcb3d2a1692d9666fff46a671aef38d334fb02/astrotel-0.1.0.tar.gz", hash = "sha256:053dc3789f69495756e3093673a4fa60b50064710ddb33e6e622088e6461b161", size = 33366, upload-time = "2025-10-18T07:01:53.99Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/d6/be/7b2cb2519c6d3685cdcf7359790af5190db69870e734dc0cca5c3978cd29/astrotel-0.1.0-py3-none-any.whl", hash = "sha256:39d766d93315ca3e7b81b6af386557521e2f65963c804c5af76bd324d3a4848e", size = 4528, upload-time = "2025-10-18T07:01:52.926Z" },
 ]
 
 [package.optional-dependencies]
@@ -91,24 +95,6 @@ fastapi = [
     { name = "opentelemetry-instrumentation-httpx" },
     { name = "opentelemetry-instrumentation-requests" },
 ]
-
-[package.metadata]
-requires-dist = [
-    { name = "httpx", marker = "extra == 'fastapi'", specifier = ">=0.28.1" },
-    { name = "opentelemetry-api", specifier = ">=1.37.0" },
-    { name = "opentelemetry-exporter-otlp-proto-grpc", specifier = ">=1.37.0" },
-    { name = "opentelemetry-exporter-otlp-proto-http", specifier = ">=1.37.0" },
-    { name = "opentelemetry-instrumentation", specifier = ">=0.58b0" },
-    { name = "opentelemetry-instrumentation-fastapi", marker = "extra == 'fastapi'", specifier = ">=0.58b0" },
-    { name = "opentelemetry-instrumentation-httpx", marker = "extra == 'fastapi'", specifier = ">=0.58b0" },
-    { name = "opentelemetry-instrumentation-requests", marker = "extra == 'fastapi'", specifier = ">=0.58b0" },
-    { name = "opentelemetry-sdk", specifier = ">=1.37.0" },
-    { name = "pydantic-settings", specifier = ">=2.10.1" },
-]
-provides-extras = ["fastapi"]
-
-[package.metadata.requires-dev]
-dev = [{ name = "fastapi", specifier = ">=0.116.1" }]
 
 [[package]]
 name = "asyncer"

@@ -1,7 +1,7 @@
 version: "3"
 x-common: &common
   networks:
-    - signoz-net
+    - signoz-private
   restart: unless-stopped
   logging:
     options:
@@ -184,9 +184,7 @@ services:
       - --dsn=tcp://clickhouse:9000
       - --up=
     restart: on-failure
-networks:
-  signoz-net:
-    name: signoz-net
+
 volumes:
   clickhouse:
     name: signoz-clickhouse

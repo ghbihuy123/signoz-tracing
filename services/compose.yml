@@ -6,7 +6,7 @@ services:
     env_file:
       - ../.env.${ENVIRONMENT}
     ports:
-      - "8001:8000"
+      - "8008:8000"
     networks:
       - signoz-private
 
